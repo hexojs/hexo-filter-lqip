@@ -1,0 +1,27 @@
+{
+  "name": "hexo-filter-lqip",
+  "version": "1.0.0",
+  "description": "A Hexo plugins which helps to introduce low quality image placeholders to the theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ertrzyiks/hexo-filter-lqip.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ertrzyiks/hexo-filter-lqip/issues"
+  },
+  "homepage": "https://github.com/ertrzyiks/hexo-filter-lqip#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "potrace": "^2.1.1",
+    "sharp": "^0.20.1",
+    "stream-to-array": "^2.3.0",
+    "string-replace-async": "^1.2.1",
+    "svgo": "^1.0.5"
+  }
+}
