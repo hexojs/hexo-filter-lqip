@@ -1,20 +1,10 @@
-var fs = require('fs')
-var tmp
-try {
-  tmp = fs.readFileSync('tmp.json').toString()
-} catch (ex) {
-  tmp = '{}'
-}
+var nocache = require('./cache/nocache')
+var filecache = require('./cache/filecache')
 
-var cache = JSON.parse(tmp)
-
-module.exports = {
-  getCache: function (url, type) {
-    return cache[url]
-  },
-
-  saveCache: function (url, type, value) {
-    cache[url] = value
-    fs.writeFileSync('tmp.json', JSON.stringify(cache))
+module.exports = function (config) {
+  if (config.cache === false) {
+    return nocache
   }
+
+  return filecache
 }
