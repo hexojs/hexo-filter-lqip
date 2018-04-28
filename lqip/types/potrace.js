@@ -5,8 +5,11 @@ var posterize = Promise.promisify(potrace.posterize)
 var svgo = require('../svgo')()
 
 function generate(buffer, options) {
+  options = options || {}
+  const canvasSize = options.canvas_size || {width: 140}
+
   return sharp(buffer)
-    .resize(140)
+    .resize(canvasSize.width, canvasSize.height)
     .toBuffer()
     .then(function (buffer) {
       return posterize(buffer, options)

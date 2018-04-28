@@ -3,11 +3,11 @@ var Promise = require('bluebird')
 var streamToArray = require('stream-to-array')
 var streamToArrayAsync = Promise.promisify(streamToArray)
 var replace = require('string-replace-async')
-var getCache = require('./lqip/cache').getCache
-var saveCache = require('./lqip/cache').saveCache
+var createCache = require('./lqip/cache')
 var types = require('./lqip/types')
 
 var config = hexo.config.lqip || {}
+var cache = createCache(config)
 
 function loadFileContent(stream) {
   return streamToArrayAsync(stream).then(function (parts) {
@@ -36,14 +36,14 @@ function processType(route, content, type) {
 
     return loadFileContent(route.get(url))
       .then(function (buffer) {
-        var cached = getCache(url, type)
+        var cached = cache.getCache(url, type)
         if (cached) { return cached }
 
         hexo.log.info('Processing', url)
         return generate(buffer, config[type])
       })
       .then(function (data) {
-        saveCache(url, type, data)
+        cache.saveCache(url, type, data)
         return serialize(data)
       })
   })
