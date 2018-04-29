@@ -4,13 +4,16 @@ var sharp = require('sharp')
 var posterize = Promise.promisify(potrace.posterize)
 var svgo = require('../svgo')()
 
-function generate(buffer, options) {
+function generate(path, buffer, options) {
   options = options || {}
   const canvasSize = options.canvas_size || {width: 140}
 
   return sharp(buffer)
     .resize(canvasSize.width, canvasSize.height)
     .toBuffer()
+    .catch(e => {
+      throw new Error('Error during processing of "' + path + '":' + e.message)
+    })
     .then(function (buffer) {
       return posterize(buffer, options)
     })

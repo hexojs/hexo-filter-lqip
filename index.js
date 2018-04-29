@@ -45,7 +45,7 @@ function processType(route, content, type) {
         if (cached) { return cached }
 
         hexo.log.info('Processing', url)
-        return generate(buffer, config[type])
+        return generate(url, buffer, config[type])
       })
       .then(function (data) {
         cache.saveCache(url, type, data)
