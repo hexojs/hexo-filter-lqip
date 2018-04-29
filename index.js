@@ -24,7 +24,7 @@ function isHtmlFile(filePath) {
 }
 
 function processType(route, content, type) {
-  var name = types[type].name
+  var name = getTypeName(type)
   var generate = types[type].generate
   var serialize = types[type].serialize
 
@@ -53,6 +53,10 @@ function processHtmlFile(route, content) {
   return processType(route, content, 'potrace')
 }
 
+function getTypeName(type) {
+  return type.toUpperCase()
+}
+
 hexo.extend.filter.register('after_generate', function () {
   var hexo = this
   var route = hexo.route
@@ -73,7 +77,7 @@ hexo.extend.helper.register('lqip_for', function (path, opts) {
     type: config.default_type || 'color',
   }, opts)
 
-  var name = types[options.type].name
+  var name = getTypeName(options.type)
 
   return '__' + name + '(' + path +')'
 })

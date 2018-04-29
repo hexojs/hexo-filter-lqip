@@ -26,7 +26,6 @@ function serialize(value) {
 }
 
 module.exports = {
-  name: 'LQIP_POTRACE',
   generate: generate,
   serialize: serialize
 }
