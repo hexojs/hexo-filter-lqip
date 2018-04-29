@@ -54,3 +54,17 @@ test('handles missing files', async t => {
   const error = await t.throws(contentFor(ctx, 'foo/index.html'))
   t.is(error.message, 'Can not find file: missing-file.jpg')
 })
+
+test('handles unsupported extension', async t => {
+  const ctx = await sandbox('potrace')
+  mockConfig(ctx, 'lqip', {
+    cache: false
+  })
+
+  const Post = ctx.model('Post');
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'example.pdf'})
+
+  await process(ctx)
+  const error = await t.throws(contentFor(ctx, 'foo/index.html'))
+  t.regex(error.message, /Error during processing of "example.pdf"/)
+})
