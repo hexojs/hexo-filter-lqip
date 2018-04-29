@@ -33,6 +33,11 @@ function processType(route, content, type) {
   return replace(content, regex, function (placeholder) {
     var mathes = placeholder.match('__' + name + '\\(([^\\(]+)\\)')
     var url = mathes[1]
+    var stream = route.get(url)
+
+    if (stream == null) {
+      return Promise.reject(new Error('Can not find file: ' + url))
+    }
 
     return loadFileContent(route.get(url))
       .then(function (buffer) {

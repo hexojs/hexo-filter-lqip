@@ -15,7 +15,7 @@ test('renders potrace placeholder', async t => {
   })
 
   const Post = ctx.model('Post');
-  await Post.insert({source: 'foo', slug: 'foo'})
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
   await process(ctx)
 
   const content = await contentFor(ctx, 'foo/index.html')
@@ -34,9 +34,23 @@ test('allows to set potrace canvas size', async t => {
   })
 
   const Post = ctx.model('Post');
-  await Post.insert({source: 'foo', slug: 'foo'})
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
   await process(ctx)
 
   const content = await contentFor(ctx, 'foo/index.html')
   t.snapshot(content.toString())
+})
+
+test('handles missing files', async t => {
+  const ctx = await sandbox('potrace')
+  mockConfig(ctx, 'lqip', {
+    cache: false
+  })
+
+  const Post = ctx.model('Post');
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'missing-file.jpg'})
+
+  await process(ctx)
+  const error = await t.throws(contentFor(ctx, 'foo/index.html'))
+  t.is(error.message, 'Can not find file: missing-file.jpg')
 })
