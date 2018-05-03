@@ -5,9 +5,26 @@ import {contentFor, mockConfig} from 'hexo-test-utils'
 
 const sandbox = getSandbox()
 
+const mockThemeConfig = (ctx, name, value) => {
+  var cfg = {}
+  cfg[name] = value
+  mockConfig(ctx, 'theme_config', cfg)
+}
+
+test('uses theme config', async t => {
+  const ctx = await sandbox('potrace')
+
+  const Post = ctx.model('Post');
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
+  await process(ctx)
+
+  const content = await contentFor(ctx, 'foo/index.html')
+  t.snapshot(content.toString())
+})
+
 test('renders potrace placeholder', async t => {
   const ctx = await sandbox('potrace')
-  mockConfig(ctx, 'lqip', {
+  mockThemeConfig(ctx, 'lqip', {
     cache: false,
     potrace: {
       color: 'red'
@@ -24,7 +41,7 @@ test('renders potrace placeholder', async t => {
 
 test('allows to set potrace canvas size', async t => {
   const ctx = await sandbox('potrace')
-  mockConfig(ctx, 'lqip', {
+  mockThemeConfig(ctx, 'lqip', {
     cache: false,
     potrace: {
       canvas_size: {
@@ -43,7 +60,7 @@ test('allows to set potrace canvas size', async t => {
 
 test('handles missing files', async t => {
   const ctx = await sandbox('potrace')
-  mockConfig(ctx, 'lqip', {
+  mockThemeConfig(ctx, 'lqip', {
     cache: false
   })
 
@@ -57,7 +74,7 @@ test('handles missing files', async t => {
 
 test('handles unsupported extension', async t => {
   const ctx = await sandbox('potrace')
-  mockConfig(ctx, 'lqip', {
+  mockThemeConfig(ctx, 'lqip', {
     cache: false
   })
 

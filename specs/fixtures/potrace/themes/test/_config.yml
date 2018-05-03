@@ -1,0 +1,5 @@
+lqip:
+  cache: false
+  potrace:
+    canvas_size:
+      width: 1
