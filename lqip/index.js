@@ -73,7 +73,7 @@ exports.lqipFor = function lqipFor(path, opts) {
   var hexo = this
   var config = hexo.theme.lqip || {}
   var options = Object.assign({
-    type: config.default_type || 'color',
+    type: config.default_type || 'potrace',
   }, opts)
 
   var name = getTypeName(options.type)
