@@ -26,7 +26,8 @@ lqipFor(path_to_asset, options)
 
 Returns a CSS value for `background-image` property, which is a simplified version of the original image.
 
-#### Example for EJS
+Example for EJS
+
 ```ejs
 <div
   style="background-image: <%- lqip_for('/content/my-photo.jpg') %>"
@@ -64,11 +65,46 @@ and replacing the `background-image` CSS property with the original image once i
 
 For even more improvement, the script could load only images that are visible on the screen.
 
-### Example project
+## Configuration
+
+Put your configuration in the theme `_config.yml` under `lqip` key.
+You can also use the [overriding theme config](https://hexo.io/docs/configuration.html#Overriding-Theme-Config)
+feature of Hexo. Available options are the following:
+
+#### cache
+
+Defaults to true. Set to `false` to disable caching.
+
+
+#### default_type
+
+Defaults to `potrace`. Use this type if not specified as a param to `lqip_for` helper.
+
+#### potrace
+
+Configuration specific to `potrace` type. All keys except `canvas_size` are passed to the `posterize` function of [potrace](https://github.com/Iwasawafag/node-potrace)
+
+##### canvas_size: {width:, height:}
+Before the image is passed to potrace, it's resized to this size.
+
+#### Example configuration:
+
+```
+lqip:
+  default_type: potrace
+  potrace:
+    canvas_size:
+      width: 140
+    steps: 2
+    color: '#dedede'
+    background: transparent
+```
+
+## Example project
 
 You can see it put together in the [hexo-lqip-example](https://github.com/ertrzyiks/hexo-lqip-example) repository.
 
-### Inspirations
+## Inspirations
 
 - [Using SVG as placeholders ](https://jmperezperez.com/svg-placeholders/)
 - [Willian Justen](https://unsplash.com/@willianjusten) pictures used for the demo
