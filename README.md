@@ -113,6 +113,11 @@ lqip:
 
 You can see it put together in the [hexo-lqip-example][2] repository.
 
+## Out there in the wild
+
+- [ertrzyiks's blog](https://blog.ertrzyiks.me)
+- [yummy food blog (in Polish)](https://ertrzyiks.github.io/yummy/)
+
 ## Inspirations
 
 - [Using SVG as placeholders ](https://jmperezperez.com/svg-placeholders/)
