@@ -20,9 +20,9 @@ Install this plugin for the theme and use the view helper to render a placeholde
 lqipFor(path_to_asset, options)
 ```
 
- - **String** *path_to_asset*
+ - **String** *path_to_asset - a path to the image
  - **Object** *options*
-   - **String** *[type]*
+   - **String** *[type]* - a type of placeholder, see the list of [available types](#available-types), defaults to the `default_type` as configured
 
 Returns a CSS value for `background-image` property, which is a simplified version of the original image.
 
@@ -65,10 +65,19 @@ and replacing the `background-image` CSS property with the original image once i
 
 For even more improvement, the script could load only images that are visible on the screen.
 
+## Available types
+
+### Potrace
+
+Type name: `potrace`
+
+Uses the `posterize` function from [potrace][node-potrace] to generate simplified SVG version of the image. The output
+is optimized with [SVGO][svgo] and inlined.
+
 ## Configuration
 
 Put your configuration in the theme `_config.yml` under `lqip` key.
-You can also use the [overriding theme config](https://hexo.io/docs/configuration.html#Overriding-Theme-Config)
+You can also use the [overriding theme config][1]
 feature of Hexo. Available options are the following:
 
 #### cache
@@ -82,7 +91,7 @@ Defaults to `potrace`. Use this type if not specified as a param to `lqip_for` h
 
 #### potrace
 
-Configuration specific to `potrace` type. All keys except `canvas_size` are passed to the `posterize` function of [potrace](https://github.com/Iwasawafag/node-potrace)
+Configuration specific to `potrace` type. All keys except `canvas_size` are passed to the `posterize` function of [potrace][node-potrace]
 
 ##### canvas_size: {width:, height:}
 Before the image is passed to potrace, it's resized to this size.
@@ -102,9 +111,14 @@ lqip:
 
 ## Example project
 
-You can see it put together in the [hexo-lqip-example](https://github.com/ertrzyiks/hexo-lqip-example) repository.
+You can see it put together in the [hexo-lqip-example][2] repository.
 
 ## Inspirations
 
 - [Using SVG as placeholders ](https://jmperezperez.com/svg-placeholders/)
 - [Willian Justen](https://unsplash.com/@willianjusten) pictures used for the demo
+
+[1]: https://hexo.io/docs/configuration.html#Overriding-Theme-Config
+[2]: https://github.com/ertrzyiks/hexo-lqip-example
+[node-potrace]: https://github.com/Iwasawafag/node-potrace
+[svgo]: https://github.com/svg/svgo
