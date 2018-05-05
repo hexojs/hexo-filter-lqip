@@ -6,7 +6,7 @@ A Hexo plugins which helps to introduce low quality image placeholders to the th
 ## Installation
 
 ```
-npm i ertrzyiks/hexo-filter-lqip --save
+npm i hexo-filter-lqip --save
 ```
 
 ## Usage

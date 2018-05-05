@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ertrzyiks/hexo-filter-lqip.git"
+    "url": "git+https://github.com/hexojs/hexo-filter-lqip.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ertrzyiks/hexo-filter-lqip/issues"
+    "url": "https://github.com/hexojs/hexo-filter-lqip/issues"
   },
-  "homepage": "https://github.com/ertrzyiks/hexo-filter-lqip#readme",
+  "homepage": "https://github.com/hexojs/hexo-filter-lqip#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
     "potrace": "^2.1.1",
