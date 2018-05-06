@@ -82,8 +82,10 @@ feature of Hexo. Available options are the following:
 
 #### cache
 
-Defaults to true. Set to `false` to disable caching.
+Defaults to 'lqip-cache.json'. Could be a string with a file name of the cache.
+You can also set to `false` to disable caching.
 
+Ideally, the cache file should not be checked in into repository.
 
 #### default_type
 

@@ -56,6 +56,10 @@ exports.afterGenerate = function () {
   var hexo = this
   var config = hexo.config
   var theme = Object.assign({}, config, hexo.theme.config, config.theme_config)
+  var lqipConfig = Object.assign({
+    cache: 'lqip-cache.json'
+  }, theme.lqip)
+
   var route = hexo.route
   var routes = route.list()
   var htmlFiles = routes.filter(isHtmlFile)
@@ -63,7 +67,7 @@ exports.afterGenerate = function () {
   return Promise.map(htmlFiles, function (filePath) {
     return loadFileContent(route.get(filePath)).then(function (buffer) {
       return route.set(filePath, function () {
-        return processHtmlFile(hexo, buffer.toString(), theme.lqip)
+        return processHtmlFile(hexo, buffer.toString(), lqipConfig)
       })
     })
   })
