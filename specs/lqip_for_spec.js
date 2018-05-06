@@ -1,4 +1,5 @@
 import test from 'ava'
+import fs from 'fs'
 import getSandbox from './support/sandbox'
 import {process} from 'hexo-test-utils/core'
 import {contentFor, mockConfig} from 'hexo-test-utils'
@@ -84,4 +85,23 @@ test('handles unsupported extension', async t => {
   await process(ctx)
   const error = await t.throws(contentFor(ctx, 'foo/index.html'))
   t.regex(error.message, /Error during processing of "example.pdf"/)
+})
+
+test('caches placeholders', async t => {
+  const ctx = await sandbox('potrace')
+  mockThemeConfig(ctx, 'lqip', {
+    cache: 'cache.json'
+  })
+
+  const Post = ctx.model('Post');
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
+
+  await process(ctx)
+  await contentFor(ctx, 'foo/index.html')
+
+  t.true(fs.existsSync('cache.json'))
+
+  await ctx.call('clean', {})
+
+  t.false(fs.existsSync('cache.json'))
 })

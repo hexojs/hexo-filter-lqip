@@ -1,16 +1,10 @@
 var Promise = require('bluebird')
 var replace = require('string-replace-async')
 
-var createCache = require('./cache')
+var getCache = require('./cache')
 var types = require('./types')
 var isHtmlFile = require('./utils').isHtmlFile
 var loadFileContent = require('./utils').loadFileContent
-
-var _cache
-function getCache(config) {
-  _cache = _cache || createCache(config)
-  return _cache
-}
 
 function processType(hexo, content, type, config) {
   var cache = getCache(config)
@@ -52,13 +46,26 @@ function getTypeName(type) {
   return type.toUpperCase()
 }
 
-exports.afterGenerate = function () {
-  var hexo = this
+function getConfig(hexo) {
   var config = hexo.config
   var theme = Object.assign({}, config, hexo.theme.config, config.theme_config)
-  var lqipConfig = Object.assign({
+
+  return Object.assign({
     cache: 'lqip-cache.json'
   }, theme.lqip)
+}
+
+exports.afterClean = function () {
+  var hexo = this
+  var config = getConfig(hexo)
+  var cache = getCache(config)
+
+  return cache.clean()
+}
+
+exports.afterGenerate = function () {
+  var hexo = this
+  var config = getConfig(hexo)
 
   var route = hexo.route
   var routes = route.list()
@@ -67,7 +74,7 @@ exports.afterGenerate = function () {
   return Promise.map(htmlFiles, function (filePath) {
     return loadFileContent(route.get(filePath)).then(function (buffer) {
       return route.set(filePath, function () {
-        return processHtmlFile(hexo, buffer.toString(), lqipConfig)
+        return processHtmlFile(hexo, buffer.toString(), config)
       })
     })
   })

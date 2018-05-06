@@ -1,10 +1,14 @@
 var nocache = require('./cache/nocache')
 var filecache = require('./cache/filecache')
 
+var _memo = {}
+
 module.exports = function (config) {
   if (config.cache === false) {
-    return nocache()
+    _memo.nocache = _memo.nocache || nocache()
+    return _memo.nocache
   }
 
-  return filecache(config.cache)
+  _memo.filecache = _memo.filecache || filecache(config.cache)
+  return _memo.filecache
 }
