@@ -18,6 +18,9 @@ module.exports = function (tmpPath) {
     saveCache: function (url, type, value) {
       cache[url] = value
       fs.writeFileSync(tmpPath, JSON.stringify(cache))
+    },
+    clean: function () {
+      fs.unlinkSync(tmpPath)
     }
   }
 }
