@@ -1,3 +1,4 @@
 module.exports = {
-  potrace: require('./types/potrace')
+  potrace: require('./types/potrace'),
+  color: require('./types/color')
 }
