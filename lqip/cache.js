@@ -3,8 +3,8 @@ var filecache = require('./cache/filecache')
 
 module.exports = function (config) {
   if (config.cache === false) {
-    return nocache
+    return nocache()
   }
 
-  return filecache
+  return filecache(config.cache)
 }

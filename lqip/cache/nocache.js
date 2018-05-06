@@ -1,4 +1,6 @@
-module.exports = {
-  getCache: function (url, type) {},
-  saveCache: function (url, type, value) {}
+module.exports = function () {
+  return {
+    getCache: function (url, type) {},
+    saveCache: function (url, type, value) {}
+  }
 }
