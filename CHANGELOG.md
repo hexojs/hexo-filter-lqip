@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.1]
+### Fixed
+- cache values by type
+
 ## [1.1.0]
 ### Added
 - possibility to configure cache file name
