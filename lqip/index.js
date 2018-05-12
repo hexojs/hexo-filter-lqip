@@ -38,8 +38,10 @@ function processType(hexo, content, type, config) {
   })
 }
 
-function processHtmlFile(hexo, content, config) {
-  return processType(hexo, content, 'potrace', config)
+function processHtmlFile(hexo, initialContent, config) {
+  return Promise.reduce(['potrace', 'color'], function(content, type) {
+    return processType(hexo, content, type, config)
+  }, initialContent)
 }
 
 function getTypeName(type) {

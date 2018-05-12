@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - possibility to configure cache file name
 - possibility to clean cache with `hexo clean`
+- `color` type
 
 ## [1.0.0]
 ### Added

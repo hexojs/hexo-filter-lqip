@@ -6,7 +6,7 @@ var svgo = require('../svgo')()
 
 function generate(path, buffer, options) {
   options = options || {}
-  const canvasSize = options.canvas_size || {width: 140}
+  var canvasSize = options.canvas_size || {width: 140}
 
   return sharp(buffer)
     .resize(canvasSize.width, canvasSize.height)

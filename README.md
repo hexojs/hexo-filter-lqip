@@ -74,6 +74,12 @@ Type name: `potrace`
 Uses the `posterize` function from [potrace][node-potrace] to generate simplified SVG version of the image. The output
 is optimized with [SVGO][svgo] and inlined.
 
+### Color
+
+Type name: `color`
+
+Plain background, the dominant color extracted from the image.
+
 ## Configuration
 
 Put your configuration in the theme `_config.yml` under `lqip` key.

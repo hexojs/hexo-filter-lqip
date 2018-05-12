@@ -1,0 +1,5 @@
+lqip:
+  cache: false
+  color:
+    canvas_size:
+      width: 10
