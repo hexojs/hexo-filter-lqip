@@ -12,11 +12,16 @@ module.exports = function (tmpPath) {
 
   return {
     getCache: function (url, type) {
-      return cache[url]
+      if (typeof cache[url] !== 'object') {
+        return
+      }
+
+      return cache[url][type]
     },
 
     saveCache: function (url, type, value) {
-      cache[url] = value
+      cache[url] = cache[url] || {}
+      cache[url][type] = value
       fs.writeFileSync(tmpPath, JSON.stringify(cache))
     },
     clean: function () {
