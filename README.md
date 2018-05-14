@@ -93,6 +93,11 @@ You can also set to `false` to disable caching.
 
 Ideally, the cache file should not be checked in into repository.
 
+#### priority
+
+The priority of the `after_generate` filter. Defaults to 10.
+You can find more information about priority in [Filter](https://hexo.io/api/filter.html) documentation.
+
 #### default_type
 
 Defaults to `potrace`. Use this type if not specified as a param to `lqip_for` helper.

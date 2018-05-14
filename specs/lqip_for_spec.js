@@ -29,7 +29,7 @@ test('caches placeholders', async t => {
     cache: 'cache.json'
   })
 
-  const Post = ctx.model('Post');
+  const Post = ctx.model('Post')
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
 
   await process(ctx)
@@ -40,4 +40,27 @@ test('caches placeholders', async t => {
   await ctx.call('clean', {})
 
   t.false(fs.existsSync('cache.json'))
+})
+
+test('allows to set filter priority', async t => {
+  const ctx = await sandbox('potrace')
+  mockThemeConfig(ctx, 'lqip', {
+    cache: false,
+    priority: 9
+  })
+
+  const Post = ctx.model('Post')
+  await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
+
+  ctx.extend.filter.register('after_generate', function () {
+    const lqip_for = this.extend.helper.get('lqip_for').bind(ctx)
+    ctx.route.set('foo/index2.html', lqip_for('sea.jpg'))
+  }, 10)
+
+  await process(ctx)
+
+  const content = await contentFor(ctx, 'foo/index2.html')
+
+  const lqip_for = ctx.extend.helper.get('lqip_for').bind(ctx)
+  t.is(content.toString(), lqip_for('sea.jpg'))
 })
