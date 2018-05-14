@@ -57,6 +57,8 @@ function getConfig(hexo) {
   }, theme.lqip)
 }
 
+exports.getConfig = getConfig
+
 exports.afterClean = function () {
   var hexo = this
   var config = getConfig(hexo)
