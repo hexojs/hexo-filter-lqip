@@ -2,7 +2,7 @@ import test from 'ava'
 import fs from 'fs'
 import getSandbox from './support/sandbox'
 import {process} from 'hexo-test-utils/core'
-import {contentFor, mockConfig} from 'hexo-test-utils'
+import {contentFor, mockConfig, getHelper} from 'hexo-test-utils'
 
 const sandbox = getSandbox()
 
@@ -53,7 +53,7 @@ test('allows to set filter priority', async t => {
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
 
   ctx.extend.filter.register('after_generate', function () {
-    const lqip_for = this.extend.helper.get('lqip_for').bind(ctx)
+    const lqip_for = getHelper(this, 'lqip_for')
     ctx.route.set('foo/index2.html', lqip_for('sea.jpg'))
   }, 10)
 
@@ -61,6 +61,6 @@ test('allows to set filter priority', async t => {
 
   const content = await contentFor(ctx, 'foo/index2.html')
 
-  const lqip_for = ctx.extend.helper.get('lqip_for').bind(ctx)
+  const lqip_for = getHelper(ctx, 'lqip_for')
   t.is(content.toString(), lqip_for('sea.jpg'))
 })
