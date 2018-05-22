@@ -6,8 +6,8 @@ module.exports = function getSandbox() {
   return createSandbox(Hexo, {
     fixture_folder: path.join(__dirname, '..','fixtures'),
     plugins: [
-      path.join(__dirname, '..', '..', 'node_modules', 'hexo-renderer-ejs', 'index.js'),
-      path.join(__dirname, '..', '..', 'index.js')
+      require.resolve('hexo-renderer-ejs'),
+      require.resolve('../../index.js')
     ]
   })
 }
