@@ -122,6 +122,20 @@ lqip:
     background: transparent
 ```
 
+## Debugging
+
+If something goes wrong, use `--debug` option to get all information about the generating of the blog and extra
+information about low-quality image placeholders processing.
+
+```
+hexo generate --debug
+```
+
+After changing parameters of placeholder it may be required to clean cache, by removing the cache file manually or with:
+```
+hexo clean
+```
+
 ## Example project
 
 You can see it put together in the [hexo-lqip-example][2] repository.

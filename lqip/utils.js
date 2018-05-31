@@ -16,3 +16,7 @@ exports.loadFileContent = function loadFileContent(stream) {
     return Buffer.concat(buffers);
   })
 }
+
+exports.getTypeName = function getTypeName(type) {
+  return type.toUpperCase()
+}
