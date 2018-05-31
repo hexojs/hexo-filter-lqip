@@ -39,7 +39,7 @@ function processType(hexo, content, type, config) {
 }
 
 function processHtmlFile(hexo, initialContent, config) {
-  return Promise.reduce(['potrace', 'color'], function(content, type) {
+  return Promise.reduce(Object.keys(types), function(content, type) {
     return processType(hexo, content, type, config)
   }, initialContent)
 }
