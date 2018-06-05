@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - `priority` configuration
+- improved logging and more information with `--debug` flag
 
 ## [1.1.1]
 ### Fixed

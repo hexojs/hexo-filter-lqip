@@ -1,52 +1,13 @@
 var Promise = require('bluebird')
-var replace = require('string-replace-async')
 
+var Stats = require('./stats').Stats
 var getCache = require('./cache')
-var types = require('./types')
 var isHtmlFile = require('./utils').isHtmlFile
+var getTypeName = require('./utils').getTypeName
 var loadFileContent = require('./utils').loadFileContent
+var processHtmlFile = require('./process').processHtmlFile
 
-function processType(hexo, content, type, config) {
-  var cache = getCache(config)
-
-  var name = getTypeName(type)
-  var generate = types[type].generate
-  var serialize = types[type].serialize
-
-  var regex = new RegExp('__' + name + '\\([^\\(]+\\)', 'g')
-
-  return replace(content, regex, function (placeholder) {
-    var mathes = placeholder.match('__' + name + '\\(([^\\(]+)\\)')
-    var url = mathes[1]
-    var stream = hexo.route.get(url)
-
-    if (stream == null) {
-      return Promise.reject(new Error('Can not find file: ' + url))
-    }
-
-    return loadFileContent(stream)
-      .then(function (buffer) {
-        var cached = cache.getCache(url, type)
-        if (cached) { return cached }
-
-        return generate(url, buffer, config[type])
-      })
-      .then(function (data) {
-        cache.saveCache(url, type, data)
-        return serialize(data)
-      })
-  })
-}
-
-function processHtmlFile(hexo, initialContent, config) {
-  return Promise.reduce(Object.keys(types), function(content, type) {
-    return processType(hexo, content, type, config)
-  }, initialContent)
-}
-
-function getTypeName(type) {
-  return type.toUpperCase()
-}
+var stats = new Stats()
 
 function getConfig(hexo) {
   var config = hexo.config
@@ -78,10 +39,27 @@ exports.afterGenerate = function () {
   return Promise.map(htmlFiles, function (filePath) {
     return loadFileContent(route.get(filePath)).then(function (buffer) {
       return route.set(filePath, function () {
-        return processHtmlFile(hexo, buffer.toString(), config)
+        return processHtmlFile({hexo: hexo, content: buffer.toString(), config: config, stats: stats})
       })
     })
   })
+}
+
+exports.beforeExit = function () {
+  var hexo = this
+
+  var messages = []
+  if (stats.generated) {
+    messages.push(stats.generated + ' files generated')
+  }
+
+  if (stats.cached) {
+    messages.push(stats.cached + ' files from cache')
+  }
+
+  if (messages.length > 0) {
+    hexo.log.info('[LQIP] processing summary: ' + messages.join(', '))
+  }
 }
 
 exports.lqipFor = function lqipFor(path, opts) {

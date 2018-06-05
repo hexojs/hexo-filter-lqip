@@ -1,5 +1,5 @@
-var nocache = require('./cache/nocache')
-var filecache = require('./cache/filecache')
+var nocache = require('./nocache')
+var filecache = require('./filecache')
 
 var _memo = {}
 
