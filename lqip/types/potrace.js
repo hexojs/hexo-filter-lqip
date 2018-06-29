@@ -1,6 +1,7 @@
 var Promise = require('bluebird')
 var potrace = require('potrace')
 var sharp = require('sharp')
+var svgToDataUri = require('../utils').svgToDataUri
 var posterize = Promise.promisify(potrace.posterize)
 var svgo = require('../svgo')()
 
@@ -25,7 +26,7 @@ function generate(path, buffer, options) {
 }
 
 function serialize(value) {
-  return "url('data:image/svg+xml," + encodeURI(value) + "')"
+  return "url('" + svgToDataUri(value) + "')"
 }
 
 module.exports = {
