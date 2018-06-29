@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.2.0]
+### Updated
+- `potrace` svg data URI is shorted and # characters are escaped
 ### Added
 - `priority` configuration
 - improved logging and more information with `--debug` flag
