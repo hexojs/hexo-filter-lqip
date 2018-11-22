@@ -29,7 +29,7 @@
     "ava": "^0.25.0",
     "hexo": "^3.7.1",
     "hexo-renderer-ejs": "^0.3.1",
-    "hexo-test-utils": "^0.2.0"
+    "hexo-test-utils": "^0.3.1"
   },
   "ava": {
     "snapshotDir": "specs/snapshots"
