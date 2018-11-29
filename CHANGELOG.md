@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.3.0]
 ### Updated
 - bluebird 3.5.3
 - sharp to 0.21.x - colors and SVGs may slightly change
