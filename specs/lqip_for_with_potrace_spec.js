@@ -24,8 +24,11 @@ test('renders potrace placeholder', async t => {
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
   await process(ctx)
 
-  const content = await contentFor(ctx, 'foo/index.html')
-  t.snapshot(content.toString())
+  const rawContent = await contentFor(ctx, 'foo/index.html')
+  const content = rawContent.toString()
+
+  t.truthy(content.trim().match(/^url\('data:image\/svg\+xml,(.*)\)$/))
+  t.true(content.indexOf('viewBox=%220 0 140 132%22') >= 0)
 })
 
 test('allows to set potrace canvas size', async t => {
@@ -43,8 +46,11 @@ test('allows to set potrace canvas size', async t => {
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'sea.jpg'})
   await process(ctx)
 
-  const content = await contentFor(ctx, 'foo/index.html')
-  t.snapshot(content.toString())
+  const rawContent = await contentFor(ctx, 'foo/index.html')
+  const content = rawContent.toString()
+
+  t.truthy(content.trim().match(/^url\('data:image\/svg\+xml,(.*)\)$/))
+  t.true(content.indexOf('viewBox=%220 0 10 9%22') >= 0)
 })
 
 test('handles missing files', async t => {
