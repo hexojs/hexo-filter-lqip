@@ -63,7 +63,7 @@ test('handles missing files', async t => {
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'missing-file.jpg'})
 
   await process(ctx)
-  const error = await t.throws(contentFor(ctx, 'foo/index.html'))
+  const error = await t.throwsAsync(contentFor(ctx, 'foo/index.html'))
   t.is(error.message, 'Can not find file: missing-file.jpg')
 })
 
@@ -77,6 +77,6 @@ test('handles unsupported extension', async t => {
   await Post.insert({source: 'foo', slug: 'foo', featured_image: 'example.pdf'})
 
   await process(ctx)
-  const error = await t.throws(contentFor(ctx, 'foo/index.html'))
+  const error = await t.throwsAsync(contentFor(ctx, 'foo/index.html'))
   t.regex(error.message, /Error during processing of "example.pdf"/)
 })
