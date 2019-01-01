@@ -143,7 +143,7 @@ You can see it put together in the [hexo-lqip-example][2] repository.
 ## Out there in the wild
 
 - [ertrzyiks's blog](https://blog.ertrzyiks.me)
-- [yummy food blog (in Polish)](https://ertrzyiks.github.io/yummy/)
+- [yummy food blog (in Polish)](https://github.com/ertrzyiks/yummy/tree/hexo)
 
 ## Inspirations
 
