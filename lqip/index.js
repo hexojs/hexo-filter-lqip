@@ -70,6 +70,7 @@ exports.lqipFor = function lqipFor(path, opts) {
   }, opts)
 
   var name = getTypeName(options.type)
+  var buff = new Buffer(path)
 
-  return '__' + name + '(' + path +')'
+  return '__' + name + '(' + buff.toString('base64') +')'
 }

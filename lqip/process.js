@@ -22,7 +22,9 @@ function processType(options) {
 
   return replace(content, regex, function (placeholder) {
     var matches = placeholder.match('__' + name + '\\(([^\\(]+)\\)')
-    var url = matches[1]
+    var encodedUrl = matches[1]
+    var buff = new Buffer(encodedUrl, 'base64')
+    var url = buff.toString('utf-8')
     var stream = hexo.route.get(url)
 
     if (stream == null) {
