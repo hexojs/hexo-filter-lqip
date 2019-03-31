@@ -38,3 +38,13 @@ function specialHexEncode(match) {
     default: return match
   }
 }
+
+exports.base64Encode = function base64Encode(data) {
+  var buff = new Buffer(data)
+  return buff.toString('base64')
+}
+
+exports.base64Decode = function base64Decode(data) {
+  var buff = new Buffer(data, 'base64')
+  return buff.toString('utf-8')
+}
