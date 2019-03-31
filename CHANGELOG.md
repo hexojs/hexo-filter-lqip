@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3.1]
+### Fixed
+- clash with `hexo-neat`,
+  content placeholders now use base64-encoded path
+
 ## [1.3.0]
 ### Updated
 - bluebird 3.5.3
