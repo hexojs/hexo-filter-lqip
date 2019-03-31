@@ -5,6 +5,7 @@ var getCache = require('./cache')
 var isHtmlFile = require('./utils').isHtmlFile
 var getTypeName = require('./utils').getTypeName
 var loadFileContent = require('./utils').loadFileContent
+var base64Encode = require('./utils').base64Encode
 var processHtmlFile = require('./process').processHtmlFile
 
 var stats = new Stats()
@@ -70,6 +71,5 @@ exports.lqipFor = function lqipFor(path, opts) {
   }, opts)
 
   var name = getTypeName(options.type)
-
-  return '__' + name + '(' + path +')'
+  return '__' + name + '(' + base64Encode(path) +')'
 }

@@ -5,6 +5,7 @@ var types = require('./types')
 var replace = require('string-replace-async')
 var loadFileContent = require('./utils').loadFileContent
 var getTypeName = require('./utils').getTypeName
+var base64Decode = require('./utils').base64Decode
 
 function processType(options) {
   var hexo = options.hexo
@@ -22,7 +23,7 @@ function processType(options) {
 
   return replace(content, regex, function (placeholder) {
     var matches = placeholder.match('__' + name + '\\(([^\\(]+)\\)')
-    var url = matches[1]
+    var url = base64Decode(matches[1])
     var stream = hexo.route.get(url)
 
     if (stream == null) {
