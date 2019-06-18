@@ -17,16 +17,16 @@
   },
   "homepage": "https://github.com/hexojs/hexo-filter-lqip#readme",
   "dependencies": {
-    "bluebird": "^3.5.3",
+    "bluebird": "^3.5.5",
     "potrace": "^2.1.1",
     "quantize": "^1.0.2",
-    "sharp": "^0.22.0",
+    "sharp": "^0.22.1",
     "stream-to-array": "^2.3.0",
     "string-replace-async": "^1.2.1",
-    "svgo": "^1.2.0"
+    "svgo": "^1.2.2"
   },
   "devDependencies": {
-    "ava": "^2.0.0",
+    "ava": "^2.1.0",
     "hexo": "^3.8.0",
     "hexo-renderer-ejs": "^0.3.1",
     "hexo-test-utils": "^0.3.1",
