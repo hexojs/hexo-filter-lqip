@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3.2]
+### Updated
+- updated dependencies
+
 ## [1.3.1]
 ### Fixed
 - clash with `hexo-neat`,
