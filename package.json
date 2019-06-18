@@ -18,7 +18,7 @@
   "homepage": "https://github.com/hexojs/hexo-filter-lqip#readme",
   "dependencies": {
     "bluebird": "^3.5.5",
-    "potrace": "^2.1.1",
+    "potrace": "github:ertrzyiks/node-potrace#update-jimp",
     "quantize": "^1.0.2",
     "sharp": "^0.22.1",
     "stream-to-array": "^2.3.0",
