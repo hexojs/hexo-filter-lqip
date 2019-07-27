@@ -6,6 +6,13 @@
   "scripts": {
     "test": "ava specs/*_spec.js"
   },
+  "directories": {
+    "lqip": "./lqip"
+  },
+  "files": [
+    "index.js",
+    "lqip/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hexojs/hexo-filter-lqip.git"
