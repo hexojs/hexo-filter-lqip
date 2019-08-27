@@ -1,4 +1,4 @@
-import test from 'ava'
+import {serial as test} from 'ava'
 import fs from 'fs'
 import getSandbox from './support/sandbox'
 import {process} from 'hexo-test-utils/core'
@@ -40,6 +40,20 @@ test('caches placeholders', async t => {
   await ctx.call('clean', {})
 
   t.false(fs.existsSync('cache.json'))
+})
+
+test('cache clean works without file', async t => {
+  const ctx = await sandbox('potrace')
+
+  mockThemeConfig(ctx, 'lqip', {
+    cache: 'some-cache.json'
+  })
+
+  await process(ctx)
+
+  await ctx.call('clean', {})
+
+  t.false(fs.existsSync('some-cache.json'))
 })
 
 test('allows to set filter priority', async t => {
