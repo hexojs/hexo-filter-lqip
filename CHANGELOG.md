@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.3.3]
 ### Fixed
 - crash when cache file is missing during cache clean
 
