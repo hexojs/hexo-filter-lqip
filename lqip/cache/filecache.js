@@ -25,7 +25,9 @@ module.exports = function (tmpPath) {
       fs.writeFileSync(tmpPath, JSON.stringify(cache))
     },
     clean: function () {
-      fs.unlinkSync(tmpPath)
+      if (fs.existsSync(tmpPath)) {
+        fs.unlinkSync(tmpPath)
+      }
     }
   }
 }
