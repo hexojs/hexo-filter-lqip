@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- support Hexo 4
 
 ## [1.3.3]
 ### Fixed
