@@ -43,6 +43,9 @@
     "hexo-test-utils": "^0.4.1",
     "testcheck": "^1.0.0-rc.2"
   },
+  "resolutions": {
+    "mkdirp": "^0.5.3"
+  },
   "ava": {
     "files": [
       "specs/*_spec.js"
