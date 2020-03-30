@@ -3537,9 +3537,9 @@ posix-character-classes@^0.1.0:
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
 potrace@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/potrace/-/potrace-2.1.2.tgz#61473a326be1e734abac6d14d54e1880eed35471"
-  integrity sha512-dNcUBapRgPkiv3j+70+rSlf0whtJJqEszC04g9a/Ll3p6kA7QVRV1Vsi3jg22voJr2jA9x9fjPbz5MdD+ngbUg==
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/potrace/-/potrace-2.1.4.tgz#256430d9da88cc0eb52a6aebb9e45f6dd64dd5e7"
+  integrity sha512-DC9kZnymJ5iWVj3erbL+CgIuEtpKc+5hXwgn+b7pGwxXAkqJ9Cbm87m1PIE35+pG5xX80MEhIytNaX5rQsfjnQ==
   dependencies:
     jimp "^0.6.4"
 
