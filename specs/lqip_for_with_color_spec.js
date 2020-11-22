@@ -22,6 +22,6 @@ test('renders color placeholder', async t => {
   await process(ctx)
 
   const content = await contentFor(ctx, 'foo/index.html')
-  t.is(content.toString(), 'linear-gradient(#ead1b0, #ead1b0)\n')
+  t.is(content.toString(), 'linear-gradient(#eacfae, #eacfae)\n')
 })
 
