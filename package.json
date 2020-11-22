@@ -1,6 +1,6 @@
 {
   "name": "hexo-filter-lqip",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A Hexo plugins which helps to introduce low quality image placeholders to the theme",
   "main": "index.js",
   "scripts": {
