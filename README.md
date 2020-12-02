@@ -111,7 +111,7 @@ Before the image is passed to potrace, it's resized to this size.
 
 #### Example configuration:
 
-```
+```yml
 lqip:
   default_type: potrace
   potrace:
