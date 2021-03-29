@@ -3,7 +3,7 @@ var potrace = require('potrace')
 var sharp = require('sharp')
 var svgToDataUri = require('../utils').svgToDataUri
 var posterize = Promise.promisify(potrace.posterize)
-var svgo = require('../svgo')()
+var { optimize } = require('../svgo')
 
 function generate(path, buffer, options) {
   options = options || {}
@@ -19,9 +19,7 @@ function generate(path, buffer, options) {
       return posterize(buffer, options)
     })
     .then(function (data) {
-      return svgo.optimize(data).then(function (result) {
-        return result.data
-      })
+      return optimize(data).data
     })
 }
 
