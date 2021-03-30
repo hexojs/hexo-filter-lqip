@@ -1,75 +1,40 @@
-var SVGO = require('svgo')
+var { optimize } = require('svgo')
 
-module.exports = function () {
-  return new SVGO({
-    plugins: [{
-      cleanupAttrs: true,
-    }, {
-      removeDoctype: true,
-    },{
-      removeXMLProcInst: true,
-    },{
-      removeComments: true,
-    },{
-      removeMetadata: true,
-    },{
-      removeTitle: true,
-    },{
-      removeDesc: true,
-    },{
-      removeUselessDefs: true,
-    },{
-      removeEditorsNSData: true,
-    },{
-      removeEmptyAttrs: true,
-    },{
-      removeHiddenElems: true,
-    },{
-      removeEmptyText: true,
-    },{
-      removeEmptyContainers: true,
-    },{
-      removeViewBox: false,
-    },{
-      cleanUpEnableBackground: true,
-    },{
-      convertStyleToAttrs: true,
-    },{
-      convertColors: true,
-    },{
-      convertPathData: true,
-    },{
-      convertTransform: true,
-    },{
-      removeUnknownsAndDefaults: true,
-    },{
-      removeNonInheritableGroupAttrs: true,
-    },{
-      removeUselessStrokeAndFill: true,
-    },{
-      removeUnusedNS: true,
-    },{
-      cleanupIDs: true,
-    },{
-      cleanupNumericValues: true,
-    },{
-      moveElemsAttrsToGroup: true,
-    },{
-      moveGroupAttrsToElems: true,
-    },{
-      collapseGroups: true,
-    },{
-      removeRasterImages: false,
-    },{
-      mergePaths: true,
-    },{
-      convertShapeToPath: true,
-    },{
-      sortAttrs: true,
-    },{
-      transformsWithOnePath: false,
-    },{
-      removeDimensions: true,
-    }]
-  });
+exports.optimize = function (data) {
+  return optimize(data, {
+    plugins: [
+      'cleanupAttrs',
+      'removeDoctype',
+      'removeXMLProcInst',
+      'removeComments',
+      'removeMetadata',
+      'removeTitle',
+      'removeDesc',
+      'removeUselessDefs',
+      'removeEditorsNSData',
+      'removeEmptyAttrs',
+      'removeHiddenElems',
+      'removeEmptyText',
+      'removeEmptyContainers',
+      'removeViewBox',
+      // 'cleanupEnableBackground',
+      'convertStyleToAttrs',
+      'convertColors',
+      'convertPathData',
+      'convertTransform',
+      'removeUnknownsAndDefaults',
+      'removeNonInheritableGroupAttrs',
+      'removeUselessStrokeAndFill',
+      'removeUnusedNS',
+      'cleanupIDs',
+      'cleanupNumericValues',
+      'moveElemsAttrsToGroup',
+      'moveGroupAttrsToElems',
+      'collapseGroups',
+      'mergePaths',
+      'convertShapeToPath',
+      'sortAttrs',
+      'removeDimensions'
+    ]
+  })
 }
