@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 20
+  ignore:
+  - dependency-name: sharp
+    versions:
+    - 0.28.0
+  - dependency-name: svgo
+    versions:
+    - 2.0.0
+    - 2.0.1
+    - 2.0.3
+    - 2.1.0
+    - 2.2.0
+    - 2.2.1
