@@ -32,7 +32,7 @@
     "quantize": "^1.0.2",
     "sharp": "^0.28.2",
     "stream-to-array": "^2.3.0",
-    "string-replace-async": "^2.0.0",
+    "string-replace-async": "^3.0.2",
     "svgo": "^2.2.2"
   },
   "devDependencies": {
