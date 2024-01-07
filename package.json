@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/hexojs/hexo-filter-lqip#readme",
   "peerDependencies": {
-    "hexo": "3.x || 4.x"
+    "hexo": "3.x || 4.x || 5.x || 6.x"
   },
   "dependencies": {
     "bluebird": "^3.7.0",
